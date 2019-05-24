@@ -1,0 +1,137 @@
+    body {
+        font-family: 'Questrial', sans-serif !important;
+    }
+    
+    .img-evento {
+        max-height: 80px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+    
+    .img-header {
+        max-height: 70px;
+        height: 80%;
+        margin-top: 7.5%;
+    }
+    
+    #weather {
+        height: 175px;
+        margin: -35px;
+    }
+    
+    #descr {
+        margin-top: 1%;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+    }
+    
+    #ora {
+        font-size: 70px;
+        color: white;
+        margin-top: 1%;
+    }
+    
+    .oggi {
+        background-color: grey;
+    }
+    
+    #ora-oggi {
+        text-align: right;
+        border-right: 1px solid white;
+        background-color: rgb(160, 160, 160);
+        color: white;
+        font-weight: 600;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    
+    .titolo {
+        background-color: orange;
+        height: 70px;
+        font-size: 20px;
+        padding-top: 20px;
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .evento-oggi {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 4px;
+        background-color: rgb(226, 226, 226);
+        /* height: 30px; */
+        font-size: 15px;
+        /* height: 10%; */
+        margin-top: 15px;
+        letter-spacing: 0.3px;
+        -webkit-box-shadow: 0px 0px 14px -3px rgba(10, 10, 10, 1);
+        -moz-box-shadow: 0px 0px 14px -3px rgba(10, 10, 10, 1);
+        /* box-shadow: */
+    }
+    
+    #titolo2 {
+        background-color: grey;
+    }
+    
+    #evento-in-corso {
+        background-color: rgb(238, 77, 77);
+        height: 150px;
+        ;
+    }
+    
+    #settimana {
+        height: 570px;
+    }
+    
+    #blocco-settimana {
+        background-color: rgb(226, 226, 226);
+        height: 250px;
+        border-right: 1px solid grey;
+    }
+    
+    #giorno-settimana {
+        background-color: rgb(160, 160, 160);
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+        text-align: center;
+        height: 15%;
+        font-size: 18px;
+        padding-top: 3px;
+        letter-spacing: 1px;
+    }
+    
+    .evento-settimana {
+        font-size: 12px;
+        font-weight: 600;
+        text-align: left;
+        background: rgba(255, 145, 20, 1);
+        background: -moz-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 145, 20, 1)), color-stop(58%, rgba(255, 172, 72, 1)), color-stop(71%, rgba(255, 178, 84, 1)));
+        background: -webkit-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
+        background: -o-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
+        background: -ms-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
+        background: linear-gradient(to right, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ff9114', endColorstr='#ffb254', GradientType=1);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ff9114', endColorstr='#ffb254', GradientType=1);
+        margin-top: 10px;
+    }
+    
+    .bordino {
+        border-right: 0.5px solid white;
+        padding-right: 15px;
+        text-align: right;
+    }
+    
+    .barra-info {
+        border-bottom: 1px solid black;
+    }
+    
+    #oggi-titolo {
+        font-weight: bold;
+        font-size: 16px;
+    }
