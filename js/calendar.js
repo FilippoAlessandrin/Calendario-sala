@@ -44,7 +44,7 @@ function initClient() {
 
         // Call handleAuthClick function when user clicks on
         //      "Sign In/Authorize" button.
-        
+
         handleAuthClick();
     });
 }
@@ -56,149 +56,163 @@ function handleAuthClick() {
     } else {
         // User is not signed in. Start Google auth flow.
         GoogleAuth.signIn();
-            intervalloCalendario();
+        intervalloCalendario();
         inCorso();
-        intervalloWeather();
+     
     }
 }
-function updateSigninStatus(isSignedIn) {
-  if (isSignedIn) {
-    isAuthorized = true;
-    if (currentApiRequest) {
-      sendAuthorizedApiRequest(currentApiRequest);
 
+function updateSigninStatus(isSignedIn) {
+    if (isSignedIn) {
+        isAuthorized = true;
+        if (currentApiRequest) {
+            sendAuthorizedApiRequest(currentApiRequest);
+
+        }
+    } else {
+        isAuthorized = false;
     }
-  } else {
-    isAuthorized = false;
-  }
 }
 
 function sendAuthorizedApiRequest(requestDetails) {
-  currentApiRequest = requestDetails;
-  if (isAuthorized) {
-    // Make API request
-    // gapi.client.request(requestDetails)
+    currentApiRequest = requestDetails;
+    if (isAuthorized) {
+        // Make API request
+        // gapi.client.request(requestDetails)
 
-    // Reset currentApiRequest variable.
-    currentApiRequest = {};
-  } else {
-    GoogleAuth.signIn();
-  }
+        // Reset currentApiRequest variable.
+        currentApiRequest = {};
+    } else {
+        GoogleAuth.signIn();
+    }
 }
 
 
 /*PROGRAMMATI*/
 
 var eventiOggi = [];
-var eventiFuturi = [];
 var eventoInCorso = [];
-var ritorno = [];
-var eventoProssimo = [];
-var first = true;
-
-
 
 
 /*PROGRAMMATI*/
-
+function intervalloGetDates(){
+    setTodayDate();
+    setOtherDate();
+    setMonthYear();
+    setInterval(setTodayDate,3600000);
+    setInterval(setOtherDate,3600000);
+    setInterval(setMonthYear,3600000);
+}
 function intervalloCalendario() {
     //Qui è l'entrata del Programma
     setInterval(gestisciEventi, 20000);
+}
+function intervalloClock(){
+    clock();
+    setInterval(clock,1000);
 }
 //Funzione per controllare se ci sono eventi in corso oppure no
 function inCorso() {
     console.log("gli eventi di oggi sono:");
     console.log(eventiOggi.length);
     console.log(eventiOggi);
-    if (eventiOggi.length > 0 || eventoProssimo.length > 0) {
-        if (first) {
-            eventoProssimo = eventiOggi[0];
-            first = false;
-        }
-
-
+    if (eventiOggi.length > 0) {
 
         if (eventoInCorso.length == 0) {
-            var oraInizio = eventoProssimo["orarioInizio"];
-            var oraFine = eventoProssimo["orarioFine"];
-            var dataInizioEvento = new Date(eventoProssimo["raw_data"]);
+            var oraInizio = eventiOggi[0]["orarioInizio"];
+            var oraFine = eventiOggi[0]["orarioFine"];
+            var dataInizioEvento = new Date(eventiOggi[0]["raw_data"]);
             var H = oraInizio.split(":")[0];
             var M = oraInizio.split(":")[1];
 
             dataInizioEvento.setHours(H, M);
-            var dataFineEvento = new Date(eventoProssimo["raw_data"]);
+            var dataFineEvento = new Date(eventiOggi[0]["raw_data"]);
             H = oraFine.split(":")[0];
             M = oraFine.split(":")[1];
             dataFineEvento.setHours(H, M);
+            var temporimanente=(dataInizioEvento.getTime()-new Date().getTime());
+            //controlla se mancano 15 minuti dall'inizio dell'evento
+            if(temporimanente<=900000){
+                insertRemoveInCorso("Tra "+Math.ceil(temporimanente/60000)+" minuti inizierà "+eventiOggi[0]["titolo"],eventiOggi[0]["orarioInizio"],"","orange",eventiOggi[0]["orarioFine"]);
+                //var messaggioBenvenuto="Benvenuto/i "+eventiOggi[0]["description"];
+            }else{
+                //inserire messaggio di benvenuto generico(benvenuti in gruppo sinergia)
+            }
+            if (new Date().getTime() >= dataInizioEvento.getTime() && dataInizioEvento.getTime() < dataFineEvento.getTime()) {
 
-            if (new Date().getTime() >= dataInizioEvento.getTime() && dataInizioEvento.getTime() < dataFineEvento.getTime() || allday) {
                 console.log("è ora")
-                console.log(eventoProssimo);
-                eventoInCorso = eventoProssimo;
+                eventoInCorso[0] = eventiOggi[0];
+                insertRemoveInCorso(eventoInCorso[0]["titolo"], eventoInCorso[0]["orarioInizio"], eventoInCorso[0]["nomeOrganizer"], "red",eventoInCorso[0]["orarioFine"]);
                 console.log("elimino evento")
-                console.log("eventiOggi[0]")
+                console.log(eventiOggi[0]);
                 eventiOggi.shift();
-                if (eventiOggi.length > 0) {
-                    eventoProssimo = eventiOggi[0];
-                    console.log("il prossimo evento è " + eventoProssimo);
-                }
-
-
-
-
-
-                var millisecondiDurata = dataFineEvento.getTime() - dataInizioEvento.getTime();
+                var millisecondiDurata = dataFineEvento.getTime() - new Date().getTime();
                 console.log("aspettiamo " + millisecondiDurata);
                 setTimeout(inCorso, millisecondiDurata);
-                console.log("iniziato evento" + eventoInCorso["titolo"]);
+                console.log("iniziato evento" + eventoInCorso[0]["titolo"]);
                 //background rosso
                 //stampa sul titolo del in corso
                 //ristampa gli eventi per oggi
             } else {
-                console.log("non è ora");
+                console.log("non è ancora ora di iniziare " + eventiOggi[0]["titolo"]);
+                
                 setTimeout(inCorso, 5000);
             }
 
 
         } else {
-            console.log("finito evento" + eventoInCorso["titolo"]);
+            console.log("finito evento " + eventoInCorso[0]["titolo"]);
             eventoInCorso = [];
+            insertRemoveInCorso("Libera", "", "", "green","");
             inCorso();
         }
 
-
     } else {
-
-
+        //inserire messaggio di benvenuto generico(benvenuti in gruppo sinergia)
+        insertRemoveInCorso("Libera", "", "", "green","");
+        console.log("Non ci sono eventi di oggi");
         setTimeout(inCorso, 5000);
-        console.log("controllato per nulla");
+
+
     }
 }
 
 function gestisciEventi(eventi) {
     var timeMax = new Date();
     var timeMin = new Date();
-    var days = 12;
     var today = new Date();
     var giorni = new Date();
     var tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1)
-    tomorrow.setHours(0, 0);
-    giorni.setDate(today.getDate() + days);
     timeMax.setHours(23, 59);
     getEventToday(timeMax, timeMin);
-    //Serve per dare a scope globale gli eventi
+    var numGiorno=1;
+     for(var i=1;i<=10;i++){
+        var dataProssima=new Date();
+        dataProssima.setDate(dataProssima.getDate()+numGiorno);
+        if(dataProssima.getDay()==0){
+            numGiorno+=1;
+            dataProssima.setDate(dataProssima.getDate()+numGiorno);
+        }
+        numGiorno+=1;
+        
+        var timeMax=new Date(dataProssima.getTime());
+        var timeMin=new Date(dataProssima.getTime());
+        timeMax.setHours(23,59);
+        timeMin.setHours(0,0);
+        getEventNextDays(timeMax, timeMin ,i)
+    
 
-    getEventNextDays(giorni, tomorrow)
+    }
+    
 
 
+    
 
-    console.log(eventiFuturi);
 
 
 
 }
-
+//blocco è la variabile i che indica il blocco del giorno della settimana
 function getEventToday(timeMax, timeMin) {
 
     var eventi = []
@@ -212,16 +226,20 @@ function getEventToday(timeMax, timeMin) {
         'creator': [],
         'timeMin': timeMin.toISOString(),
         'timeMax': timeMax.toISOString(),
+     
 
 
     }).then(function (response) {
 
         eventiOggi = parseEvents(response);
-
+        insertToday();
     });
+
+
+
 }
 
-function getEventNextDays(timeMax, timeMin) {
+function getEventNextDays(timeMax, timeMin,blocco) {
 
     var eventi = []
     gapi.client.calendar.events.list({
@@ -238,11 +256,17 @@ function getEventNextDays(timeMax, timeMin) {
 
     }).then(function (response) {
 
-        eventiFuturi = parseEvents(response);
-
+        setOtherEvents(parseEvents(response),blocco);
     });
 }
-
+function parseEmail(email){
+    email=email.split("@");
+    var nomecognome=email[0];
+    var nome=nomecognome.split(".")[0];
+    var cognome=nomecognome.split(".")[1];
+    return nome+" "+cognome;
+    
+}
 function parseEvents(response) {
     var eventi = [];
     var events = response.result.items;
@@ -250,8 +274,9 @@ function parseEvents(response) {
         for (i = 0; i < events.length; i++) {
             var event = events[i];
             var when = event.start.dateTime;
-            var nomeOrganizer = event.creator.email;
+            var nomeOrganizer = parseEmail(event.creator.email);
             var evento = [];
+            var description=event.description;
 
 
             if (!when) {
@@ -262,6 +287,7 @@ function parseEvents(response) {
                 evento["data"] = data;
                 evento["nomeOrganizer"] = nomeOrganizer;
                 evento["titolo"] = event.summary;
+                evento["description"]=description
                 eventi.push(evento);
             } else {
 
@@ -285,6 +311,7 @@ function parseEvents(response) {
                 evento["orarioFine"] = orarioFine;
                 evento["nomeOrganizer"] = nomeOrganizer;
                 evento["titolo"] = event.summary;
+                evento["description"]=description
                 eventi.push(evento);
             }
 
@@ -294,3 +321,121 @@ function parseEvents(response) {
     }
     return eventi;
 }
+
+function insertRemoveInCorso(titolo, oraInizio, responsabile, colore, oraFine) {
+    var titoloHTML;
+    var orarioHTML;
+    var responsabileHTML;
+    var background = document.getElementById("evento-in-corso");
+    titoloHTML = document.getElementById("titolo-in-corso");
+    orarioHTML = document.getElementById("ora");
+    responsabileHTML = document.getElementById("responsabile");
+    if(titolo=="Libera"){
+        titoloHTML.innerHTML=titolo;
+        responsabileHTML.innerHTML="";
+    }else{
+        titoloHTML.innerHTML = titolo+" (h. "+oraInizio+" - "+oraFine+")";
+        responsabileHTML.innerHTML = responsabile;
+        
+    }
+  
+    background.className="row color-change-"+colore+" banner-height";
+}
+
+function insertToday(){
+    var colonnaOggi=document.getElementById("colonna-oggi");
+    colonnaOggi.innerHTML="";
+    for(var i=0;i<eventiOggi.length;i++){
+        var evento=eventiOggi[i];
+        var row=document.createElement("div");
+        row.className="row evento-oggi";
+        var rigaEvento="<div class='col-3' id='ora-oggi'>\
+                            <div id='ora-inizio'>"+evento["orarioInizio"]+"</div>\
+                            <div id='ora-fine'>"+evento["orarioFine"]+"</div>\
+                        </div>\
+                        <div class='col-9'>\
+                            <div>" +evento["titolo"]+"</div>\
+                            <div>"+evento["nomeOrganizer"]+"</div>\
+                        </div>";
+        
+        row.innerHTML=rigaEvento;
+        colonnaOggi.appendChild(row);
+        
+    }
+   
+        
+
+    
+}
+function traduciMese(){
+    var mesi=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"]
+    return mesi[new Date().getMonth()];
+}
+function setMonthYear(){
+    var titoloMese=document.getElementById("titolo-mese");
+    titoloMese.innerHTML=traduciMese()+" "+new Date().getFullYear();
+}
+function traduciGiorno(dataProssima){
+    var settimana=["Dom","Lun","Mar","Mer","Gio","Ven","Sab"];
+    var giornata=dataProssima.getDay();
+    return settimana[giornata];
+    
+}
+
+function setTodayDate(){
+    var titoloDataOggi=document.getElementById("data-oggi");
+    titoloDataOggi.innerHTML="Oggi, "+new Date().getDate()+" "+traduciMese();
+}
+function setOtherDate(){
+    var numGiorno=1;
+    for(var i=1; i<=10;i++){
+        
+        var dataProssima=new Date();
+        dataProssima.setDate(dataProssima.getDate()+numGiorno);
+        if(dataProssima.getDay()==0){
+           numGiorno+=1
+            dataProssima.setDate(dataProssima.getDate()+1);
+        }
+        numGiorno+=1;
+        
+        
+        console.log(traduciGiorno(dataProssima));
+        document.getElementById("giorno-titolo-"+i).innerHTML=traduciGiorno(dataProssima)+" "+dataProssima.getDate();  
+        
+        
+    }
+    
+    
+}
+      
+function setOtherEvents(eventi,blocco){
+    var blocco=document.getElementById("giorno-"+blocco);
+    blocco.innerHTML="";
+    for(var x=0;x<eventi.length;x++){
+        var row=document.createElement("div");
+        row.className="row evento-settimana";
+        var orarioInizio=eventi[x]["orarioInizio"];
+        var orarioFine=eventi[x]["orarioFine"];
+        var titolo=eventi[x]["titolo"];
+        var nomeOrganizer=eventi[x]["nomeOrganizer"];
+        var rigaEvento=`<div class='col-3 bordino'>
+                            ${orarioInizio} ${orarioFine}
+                        </div>
+                        <div class='col-9'>
+                            <div>${titolo}</div>
+                            <div>"${nomeOrganizer}"</div>
+                        </div>`;
+        row.innerHTML=rigaEvento;
+        blocco.appendChild(row);
+                            
+    }
+}
+
+function clock(){
+    var orologio=document.getElementById("ora");
+    orologio.innerHTML=new Date().getHours()+":"+(new Date().getMinutes()<10?'0':'')+new Date().getMinutes();
+}
+document.addEventListener('DOMContentLoaded', function() {
+    intervalloGetDates();
+    intervalloClock();
+}, false);

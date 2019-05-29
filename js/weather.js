@@ -11,9 +11,9 @@ function gettingJSON() {
     });
 }
 
-/*document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     intervalloWeather();
-});*/
+});
 
 
 function intervalloWeather() {
