@@ -40,12 +40,15 @@ body {
     -webkit-animation: color-change-red 3s linear infinite alternate both;
     animation: color-change-red 3s linear infinite alternate both;
 }
-.color-change-green{
+
+.color-change-green {
     background-color: rgb(76, 175, 80);
 }
-.color-change-orange{
+
+
+/* .color-change-orange {
     background-color: #ee7421;
-}
+} */
 
 @-webkit-keyframes color-change-red {
     0% {
@@ -86,6 +89,7 @@ body {
 
 /*_______________________sala libera verde___________________________________
             da implementare in modo dinamico */
+
 
 /*.color-change-green {
     -webkit-animation: color-change-green 4s linear infinite alternate both;
@@ -134,12 +138,12 @@ body {
             deve comparire 15 minuti prima dell'appuntamento, ma se ci sono eventi in corso non
             deve essere mostrato*/
 
-.color-change-yellow {
-    -webkit-animation: color-change-yellow 4s linear infinite alternate both;
-    animation: color-change-yellow 4s linear infinite alternate both;
+.color-change-orange {
+    -webkit-animation: color-change-orange 4s linear infinite alternate both;
+    animation: color-change-orange 4s linear infinite alternate both;
 }
 
-@-webkit-keyframes color-change-yellow {
+@-webkit-keyframes color-change-orange {
     0% {
         background: rgb(255, 185, 55);
     }
@@ -157,7 +161,7 @@ body {
     }
 }
 
-@keyframes color-change-yellow {
+@keyframes color-change-orange {
     0% {
         background: rgb(255, 185, 55);
     }
@@ -186,17 +190,14 @@ body {
 /*_____________________________________sezione eventi oggi (col-3)____________________________________________________*/
 
 .oggi {
-    background-color: rgb(160, 160, 160);
-    border-right: 2px solid #3a3a3b;
-    ;
+    background-color: rgb(218, 218, 218);
 }
 
 #ora-oggi {
     text-align: right;
     border-right: 1px solid white;
-    background-color: #3a3a3b;
+    background-color: orange;
     color: white;
-    font-weight: 600;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
@@ -207,23 +208,17 @@ body {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 4px;
-    background-color: #f6f7f8;
-    /* height: 30px; */
-    font-size: 15px;
-    /* height: 10%; */
+    background-color: white;
+    border: 1px solid orange;
     margin-top: 15px;
     letter-spacing: 0.3px;
-    -webkit-box-shadow: 0px 0px 14px -3px rgba(10, 10, 10, 1);
-    -moz-box-shadow: 0px 0px 14px -3px rgba(10, 10, 10, 1);
-    /* box-shadow: */
 }
 
 .titolo {
-    background-color: #f0853e;
+    background-color: #3a3a3b;
     height: 6vh;
-    font-size: 20px;
+    font-size: 21px;
     color: white;
-    text-shadow: 2px 2px 4px #000000;
     font-weight: bold;
     text-align: center;
     line-height: 6vh;
@@ -238,43 +233,27 @@ body {
 /*_____________________________________sezione eventi della settimana (col-9)___________________________________________*/
 
 #titolo2 {
-    background-color: #3a3a3b;
-    line-height: 6vh;
-}
-
-#settimana {
-    height: 64vh;
+    color: #3a3a3b;
+    background-color: rgb(218, 218, 218);
 }
 
 .blocco-settimana {
     background-color: #f6f7f8;
     height: 32vh;
-    border-right: 1px solid #3a3a3b;
+    border-right: 0.5px solid rgb(218, 218, 218);
+    border-top: 0.5px solid rgb(218, 218, 218);
 }
 
 #giorno-settimana {
-    background-color: rgb(160, 160, 160);
     line-height: 4vh;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-    text-align: center;
+    text-align: right;
     height: 4vh;
     font-size: 18px;
-    letter-spacing: 1px;
 }
 
 .evento-settimana {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 14px;
     text-align: left;
-    background: rgba(255, 145, 20, 1);
-    background: -moz-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
-    background: -webkit-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
-    background: -o-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
-    background: -ms-linear-gradient(left, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
-    background: linear-gradient(to right, rgba(255, 145, 20, 1) 0%, rgba(255, 172, 72, 1) 58%, rgba(255, 178, 84, 1) 71%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ff9114', endColorstr='#ffb254', GradientType=1);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ff9114', endColorstr='#ffb254', GradientType=1);
     margin-top: 10px;
 }
 
@@ -282,6 +261,10 @@ body {
     border-right: 0.5px solid white;
     padding-right: 15px;
     text-align: right;
+    background-color: #3a3a3b;
+    border-radius: 5px;
+    margin-left: 15px;
+    color: white;
 }
 
 
