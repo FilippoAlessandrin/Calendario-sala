@@ -240,7 +240,7 @@ body {
     height: 64vh;
 }
 
-#blocco-settimana {
+.blocco-settimana {
     background-color: #f6f7f8;
     height: 32vh;
     border-right: 1px solid #3a3a3b;
