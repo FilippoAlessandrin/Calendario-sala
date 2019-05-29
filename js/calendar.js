@@ -376,7 +376,7 @@ function setMonthYear(){
     titoloMese.innerHTML=traduciMese()+" "+new Date().getFullYear();
 }
 function traduciGiorno(dataProssima){
-    var settimana=["Dom","Lun","Mar","Mer","Gio","Ven","Sab"];
+    var settimana=["dom","lun","mar","mer","gio","ven","sab"];
     var giornata=dataProssima.getDay();
     return settimana[giornata];
     
@@ -422,8 +422,12 @@ function setOtherEvents(eventi,blocco){
                             ${orarioInizio} ${orarioFine}
                         </div>
                         <div class='col-9'>
-                            <div>${titolo}</div>
-                            <div>"${nomeOrganizer}"</div>
+                            <div>
+                                ${titolo}
+                            </div>
+                            <div>
+                                ${nomeOrganizer}
+                            </div>
                         </div>`;
         row.innerHTML=rigaEvento;
         blocco.appendChild(row);

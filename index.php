@@ -241,8 +241,8 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <div class="row barra-info"><!--color-change-benvenuti-->
             <div class="col-3">
             <div class="row meteo">    
-                    <div><img src="img/amcharts/animated/cloudy.svg" class="weather "></div>
-                    <div class="gradi">17°</div>
+                    <div><img class="weather " id="img-meteo"></div>
+                    <div class="gradi" id="gradi">17°</div>
                 </div>
             </div>
             <div class="col-6 text-center flip-vertical-left">
@@ -250,8 +250,8 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             </div>
             <div class="col-3">
                 <div class="row meteo">    
-                    <div><img src="img/amcharts/animated/day.svg" class="weather "></div>
-                    <div class="gradi">17°</div>
+                    <div><img class="weather" id="img-meteo-2"></div>
+                    <div class="gradi" id="gradi-2">17°</div>
                 </div>
             </div>
             
