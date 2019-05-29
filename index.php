@@ -1,10 +1,3 @@
-
-<?php
-
-$temperature="17°";
-$minuti=15;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,33 +35,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
         </div> 
         
-        <!-- <div class="row color-change-green">
-            <div class="col-3 text-center">
-                <img  src="img/gruppo-sinergia-logistica-per-ecommerce-bianco.png" class="img-header">
-            </div>
-            <div class="col-6 text-center" id="descr">
-                <div>
-                    <?php echo "Sala Riunioni Libera"; ?>
-                </div>
-            </div>
-            <div class="col-3 text-center" id="ora">
-                <?=date('H:i'); ?>
-            </div>
-        </div>
-
-        <div class="row color-change-yellow">
-            <div class="col-3 text-center">
-                <img  src="img/gruppo-sinergia-logistica-per-ecommerce-bianco.png" class="img-header">
-            </div>
-            <div class="col-6 text-center" id="descr">
-                <div>
-                    <h3><?php echo "Il prossimo evento inizierà tra " . $minuti . " minuti.";?></h3>
-                </div>    
-            </div>
-            <div class="col-3 text-center" id="ora">
-                <?=date('H:i'); ?>
-            </div>
-        </div> -->
+        
     
         <!--EVENTI-->
 
@@ -238,7 +205,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         </div>
             
         <!-- BARRA INFO -->
-        <div class="row barra-info"><!--color-change-benvenuti-->
+        <div class="row barra-info">
             <div class="col-3">
             <div class="row meteo">    
                     <div><img class="weather " id="img-meteo"></div>
@@ -251,7 +218,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             <div class="col-3">
                 <div class="row meteo">    
                     <div><img class="weather" id="img-meteo-2"></div>
-                    <div class="gradi" id="gradi-2">17°</div>
+                    <div class="gradi" id="gradi-2"></div>
                 </div>
             </div>
             
