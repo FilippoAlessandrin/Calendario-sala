@@ -105,6 +105,7 @@ function intervalloGetDates(){
 }
 function intervalloCalendario() {
     //Qui è l'entrata del Programma
+    
     setInterval(gestisciEventi, 20000);
 }
 function intervalloClock(){
@@ -116,6 +117,8 @@ function inCorso() {
     console.log("gli eventi di oggi sono:");
     console.log(eventiOggi.length);
     console.log(eventiOggi);
+   
+    var messaggioHTML=document.getElementById("messaggio-benv")
     if (eventiOggi.length > 0) {
 
         if (eventoInCorso.length == 0) {
@@ -126,18 +129,31 @@ function inCorso() {
             var M = oraInizio.split(":")[1];
 
             dataInizioEvento.setHours(H, M);
-            var dataFineEvento = new Date(eventiOggi[0]["raw_data"]);
+            var dataFineEvento = new Date(eventiOggi[0]["dataFine"]);
             H = oraFine.split(":")[0];
             M = oraFine.split(":")[1];
             dataFineEvento.setHours(H, M);
             var temporimanente=(dataInizioEvento.getTime()-new Date().getTime());
+            var messaggioBenvenuto;
             //controlla se mancano 15 minuti dall'inizio dell'evento
-            if(temporimanente<=900000){
+            if(temporimanente<=900000 &&temporimanente>0){
                 insertRemoveInCorso("Tra "+Math.ceil(temporimanente/60000)+" minuti inizierà "+eventiOggi[0]["titolo"],eventiOggi[0]["orarioInizio"],"","orange",eventiOggi[0]["orarioFine"]);
-                //var messaggioBenvenuto="Benvenuto/i "+eventiOggi[0]["description"];
+                if(eventiOggi[0]["description"]){
+                
+                   messaggioBenvenuto=eventiOggi[0]["description"]; 
+                    if(messaggioBenvenuto.length>32){
+                        messaggioHTML.style.fontSize="50px";
+                    }
+                }else{
+                    messaggioBenvenuto="Benvenuti in Gruppo Sinergia"
+                }
+                
+                
             }else{
-                //inserire messaggio di benvenuto generico(benvenuti in gruppo sinergia)
+                
+                messaggioBenvenuto= "Benvenuti in Gruppo Sinergia";
             }
+            messaggioHTML.innerHTML=messaggioBenvenuto;
             if (new Date().getTime() >= dataInizioEvento.getTime() && dataInizioEvento.getTime() < dataFineEvento.getTime()) {
 
                 console.log("è ora")
@@ -168,7 +184,8 @@ function inCorso() {
         }
 
     } else {
-        //inserire messaggio di benvenuto generico(benvenuti in gruppo sinergia)
+        
+        messaggioHTML.innerHTML="Benvenuti in Gruppo Sinergia";
         insertRemoveInCorso("Libera", "", "", "green","");
         console.log("Non ci sono eventi di oggi");
         setTimeout(inCorso, 5000);
@@ -273,22 +290,29 @@ function parseEvents(response) {
     if (events.length > 0) {
         for (i = 0; i < events.length; i++) {
             var event = events[i];
+            var evento=[];
             var when = event.start.dateTime;
             var nomeOrganizer = parseEmail(event.creator.email);
             var evento = [];
             var description=event.description;
-
+            var titolo=event.summary;
+            evento["description"]=description;
+            if(nomeOrganizer.length>25){
+                evento["nomeOrganizer"]=nomeOrganizer.substring(0, 25) +"...";
+            }
+            if(event.summary.length>25){
+                evento["titolo"]=titolo.substring(0,25)+"...";
+            }else{
+                evento["titolo"]=titolo;
+            }
 
             if (!when) {
                 when = event.start.date;
                 var data = when.split("-");
                 data = data[2] + "/" + data[1] + "/" + data[0];
-                var evento = [data, nomeOrganizer, event.summary];
                 evento["data"] = data;
-                evento["nomeOrganizer"] = nomeOrganizer;
-                evento["titolo"] = event.summary;
-                evento["description"]=description
-                eventi.push(evento);
+                evento["description"]=description;
+                
             } else {
 
                 var divisoreData = when.split("T");
@@ -300,20 +324,24 @@ function parseEvents(response) {
                 data = data[2] + "/" + data[1] + "/" + data[0];
                 var orarioInizio = orario.split("+")[0];
                 orarioInizio = orarioInizio.substring(0, orarioInizio.length - 3);
+                
+                
                 var orarioFine = event.end.dateTime;
-                var durata = 0;
-                orarioFine = orarioFine.split("T")[1];
-                durata = orarioFine.split("+")[1];
+                var divisoreFine=orarioFine.split("T");
+                var dataFine;
+                
+                dataFine=divisoreFine[0];
+                orarioFine = divisoreFine[1];
+                
                 orarioFine = orarioFine.split("+")[0];
                 orarioFine = orarioFine.substring(0, orarioFine.length - 3);
                 evento["data"] = data;
                 evento["orarioInizio"] = orarioInizio;
-                evento["orarioFine"] = orarioFine;
-                evento["nomeOrganizer"] = nomeOrganizer;
-                evento["titolo"] = event.summary;
-                evento["description"]=description
-                eventi.push(evento);
+                evento["orarioFine"] = orarioFine;   
+                evento["dataFine"]=dataFine;
+               
             }
+            eventi.push(evento);
 
         }
     } else {
@@ -327,16 +355,21 @@ function insertRemoveInCorso(titolo, oraInizio, responsabile, colore, oraFine) {
     var orarioHTML;
     var responsabileHTML;
     var background = document.getElementById("evento-in-corso");
+    var descr=document.getElementById("descr");
     titoloHTML = document.getElementById("titolo-in-corso");
+    
     orarioHTML = document.getElementById("ora");
     responsabileHTML = document.getElementById("responsabile");
     if(titolo=="Libera"){
         titoloHTML.innerHTML=titolo;
         responsabileHTML.innerHTML="";
+        descr.className="col-6 text-center descr-libera";
+        titoloHTML.className="titolo-libera";
     }else{
         titoloHTML.innerHTML = titolo+" (h. "+oraInizio+" - "+oraFine+")";
         responsabileHTML.innerHTML = responsabile;
-        
+        descr.className="col-6 text-center descr-occupata";
+        titoloHTML.className="";
     }
   
     background.className="row color-change-"+colore+" banner-height";
@@ -421,7 +454,7 @@ function setOtherEvents(eventi,blocco){
         var rigaEvento=`<div class='col-3 bordino'>
                             ${orarioInizio} ${orarioFine}
                         </div>
-                        <div class='col-9'>
+                        <div class='col-8' style="padding-right:0">
                             <div>
                                 ${titolo}
                             </div>

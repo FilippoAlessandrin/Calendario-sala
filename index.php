@@ -26,9 +26,9 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             <div class="col-3 text-center">
                 <img  src="img/gruppo-sinergia-logistica-per-ecommerce-bianco.png" class="img-header">
             </div>
-            <div class="col-6 text-center" id="descr">
+            <div class="col-6 text-center descr-libera" id="descr">
                 <div>
-                    <div id="titolo-in-corso">
+                    <div class="titolo-libero" id="titolo-in-corso">
                         Libera
                     </div>
                 </div>
@@ -246,7 +246,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
                 </div>
             </div>
             <div class="col-6 text-center flip-vertical-left">
-                    <div class="line-1">Benvenuti a Gruppo Sinergia</div>
+                    <div class="line-1" id="messaggio-benv">Benvenuti in Gruppo Sinergia</div>
             </div>
             <div class="col-3">
                 <div class="row meteo">    

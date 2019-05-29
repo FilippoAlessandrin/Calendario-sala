@@ -16,8 +16,13 @@ body {
     margin-top: 8%;
 }
 
-#descr {
+.descr-occupata {
     margin-top: 1.5%;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+.descr-libera{
     font-size: 40px;
     color: white;
     text-align: center;
@@ -196,7 +201,7 @@ body {
 #ora-oggi {
     text-align: right;
     border-right: 1px solid white;
-    background-color: orange;
+    background-color: #ff8d3e;
     color: white;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -209,7 +214,7 @@ body {
     -moz-border-radius: 10px;
     border-radius: 4px;
     background-color: white;
-    border: 1px solid orange;
+    border: 1px solid #ff8d3e;
     margin-top: 15px;
     letter-spacing: 0.3px;
 }
@@ -223,7 +228,9 @@ body {
     text-align: center;
     line-height: 6vh;
 }
-
+.titolo-libera{
+    line-height: 17vh;
+}
 #oggi-titolo {
     font-weight: bold;
     font-size: 16px;
@@ -260,11 +267,14 @@ body {
 .bordino {
     border-right: 0.5px solid white;
     padding-right: 15px;
-    text-align: right;
+    text-align: center;
     background-color: #3a3a3b;
     border-radius: 5px;
     margin-left: 15px;
     color: white;
+}
+.libera{
+    line-height: 17vh
 }
 
 
@@ -281,6 +291,7 @@ body {
 
 .line-1 {
     margin-top: 1.3%;
+  
 }
 
 .meteo {
@@ -301,32 +312,7 @@ body {
     margin-top: 1.5%;
 }
 
-.flip-vertical-left {
-    -webkit-animation: flip-vertical-left 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    animation: flip-vertical-left 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-}
 
-@-webkit-keyframes flip-vertical-left {
-    0% {
-        -webkit-transform: rotateY(0);
-        transform: rotateY(0);
-    }
-    100% {
-        -webkit-transform: rotateY(-360deg);
-        transform: rotateY(-360deg);
-    }
-}
-
-@keyframes flip-vertical-left {
-    0% {
-        -webkit-transform: rotateY(0);
-        transform: rotateY(0);
-    }
-    100% {
-        -webkit-transform: rotateY(-360deg);
-        transform: rotateY(-360deg);
-    }
-}
 
 
 /* ______________________________________________________________________________________________ */
