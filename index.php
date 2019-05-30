@@ -16,20 +16,25 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <!--EVENTO IN CORSO-->
         
         <div class="row color-change-red banner-height" id="evento-in-corso">
-            <div class="col-3 text-center">
-                <img  src="img/gruppo-sinergia-logistica-per-ecommerce-bianco.png" class="img-header">
+            <div class="col-3 text-center align-self-center m-auto">
+                <img  src="img/gruppo-sinergia-logistica-per-ecommerce-bianco.png" class="img-header align-middle">
             </div>
-            <div class="col-6 text-center descr-libera" id="descr">
-                <div>
-                    <div class="titolo-libero" id="titolo-in-corso">
-                        Libera
+            <div class="col-6 text-center descr-libera align-middle align-self-center m-auto" id="descr">
+                <div class=row>
+                    <div class="col-12 titolo-libera" >
+                        <p id="titolo-in-corso">LIBERA</p>
+                        
                     </div>
                 </div>
-                <div>
-                    <h3 id="responsabile"></h3>
+                <div class="row">
+                    <div class="col-12">
+                        <h3 id="responsabile"></h3>
+                    </div>
+                
                 </div>
+           
             </div>
-            <div class="col-3 text-center" id="ora">
+            <div class="col-3 text-center align-self-center m-auto" id="ora">
                 
             </div>
 
@@ -45,7 +50,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             
             <div class="col-3 oggi">
                 <div class="row titolo">
-                    <div class="col-12" id="data-oggi">
+                    <div class="col-12  align-self-center m-auto" id="data-oggi">
                     </div>
                 </div>
                 <div class="row">
@@ -63,7 +68,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             <div class="col-9"  id="settimana">
                 
                     <div class="row titolo" id="titolo2">
-                        <div class="col-12" id="titolo-mese">
+                        <div class="col-12 align-middle align-self-center m-auto" id="titolo-mese">
                             
                             
                         </div>
@@ -213,7 +218,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
                 </div>
             </div>
             <div class="col-6 text-center flip-vertical-left">
-                    <div class="line-1" id="messaggio-benv">Benvenuti in Gruppo Sinergia</div>
+                    <div class="line-1 align-middle align-self-center m-auto" id="messaggio-benv">Benvenuti in Gruppo Sinergia</div>
             </div>
             <div class="col-3">
                 <div class="row meteo">    

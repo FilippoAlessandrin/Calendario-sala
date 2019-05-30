@@ -11,13 +11,10 @@ body {
 /*_________________________________sezione banner superiore (stato della sala)_____________________________________*/
 
 .img-header {
-    max-height: 70px;
-    height: 80%;
-    margin-top: 8%;
+    max-height: 90px;
 }
 
 .descr-occupata {
-    margin-top: 1.5%;
     font-size: 40px;
     color: white;
     text-align: center;
@@ -226,10 +223,8 @@ body {
     color: white;
     font-weight: bold;
     text-align: center;
-    line-height: 6vh;
 }
 .titolo-libera{
-    line-height: 17vh;
 }
 #oggi-titolo {
     font-weight: bold;
@@ -310,6 +305,7 @@ body {
     color: white;
     padding-top: 1vh;
     margin-top: 1.5%;
+    margin-left: 10px;
 }
 
 
