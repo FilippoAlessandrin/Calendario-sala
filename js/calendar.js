@@ -14,9 +14,6 @@ var calendario="grupposinergia.com_i7olvi8c8c0hkj0nlk7g9g7vv0@group.calendar.goo
 var eventiOggi = [];
 var eventoInCorso = [];
 
-intervalloCalendario();
-inCorso();
-
 document.addEventListener('DOMContentLoaded', function() {
     intervalloCalendario();
     inCorso();
@@ -113,14 +110,14 @@ function inCorso() {
         } else {
             console.log("finito evento " + eventoInCorso[0]["titolo"]);
             eventoInCorso = [];
-            insertRemoveInCorso("Libera", "", "", "green","");
+            insertRemoveInCorso("LIBERA", "", "", "green","");
             inCorso();
         }
 
     } else {
         
         messaggioHTML.innerHTML="Benvenuti in Gruppo Sinergia";
-        insertRemoveInCorso("Libera", "", "", "green","");
+        insertRemoveInCorso("LIBERA", "", "", "green","");
         console.log("Non ci sono eventi di oggi");
         setTimeout(inCorso, 5000);
 
@@ -146,8 +143,8 @@ function gestisciEventi(eventi) {
         
         var timeMaxDay=new Date(dataProssima.getTime());
         var timeMinDay=new Date(dataProssima.getTime());
-        timeMax.setHours(23,59);
-        timeMin.setHours(0,0);
+        timeMaxDay.setHours(23,59);
+        timeMinDay.setHours(0,0);
         getEventNextDays(timeMaxDay, timeMinDay ,i);
     
 
@@ -180,12 +177,12 @@ function getEventToday(timeMax, timeMin) {
 
 }
 
-function getEventNextDays(timeMax, timeMin,blocco) {
+function getEventNextDays(timeMaxDay, timeMinDay,blocco) {
 
   
  $.ajax({
         type: 'GET',
-        url: encodeURI('https://www.googleapis.com/calendar/v3/calendars/' + calendario+ '/events?key=' + API_KEY+'&timeMax='+timeMax.toISOString()+'&timeMin='+timeMin.toISOString()+'&orderBy=starttime&singleEvents=True'),
+        url: encodeURI('https://www.googleapis.com/calendar/v3/calendars/' + calendario+ '/events?key=' + API_KEY+'&timeMax='+timeMaxDay.toISOString()+'&timeMin='+timeMinDay.toISOString()+'&orderBy=starttime&singleEvents=True'),
         dataType: 'json',
         success: function (response) {
           
@@ -204,9 +201,17 @@ function parseEmail(email){
     var nomecognome=email[0];
     var nome=nomecognome.split(".")[0];
     var cognome=nomecognome.split(".")[1];
+    nome=uppercaseFirst(nome);
+    cognome=uppercaseFirst(cognome);
     return nome+" "+cognome;
     
 }
+
+function uppercaseFirst(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function parseEvents(response) {
     var eventi = [];
     var events = response.items;
@@ -221,6 +226,8 @@ function parseEvents(response) {
             evento["description"]=description;
             if(nomeOrganizer.length>25){
                 evento["nomeOrganizer"]=nomeOrganizer.substring(0, 25) +"...";
+            }else{
+                evento["nomeOrganizer"]=nomeOrganizer;
             }
             if(event.summary.length>25){
                 evento["titolo"]=titolo.substring(0,25)+"...";
@@ -282,16 +289,16 @@ function insertRemoveInCorso(titolo, oraInizio, responsabile, colore, oraFine) {
     
     orarioHTML = document.getElementById("ora");
     responsabileHTML = document.getElementById("responsabile");
-    if(titolo=="Libera"){
+    if(titolo=="LIBERA"){
         titoloHTML.innerHTML=titolo;
         responsabileHTML.innerHTML="";
-        descr.className="col-6 text-center descr-libera";
-        titoloHTML.className="titolo-libera";
+        descr.className="col-6 text-center descr-libera align-middle align-self-center m-auto";
+        titoloHTML.className="col-12 titolo-libera";
     }else{
         titoloHTML.innerHTML = titolo+" (h. "+oraInizio+" - "+oraFine+")";
         responsabileHTML.innerHTML = responsabile;
-        descr.className="col-6 text-center descr-occupata";
-        titoloHTML.className="";
+        descr.className="col-6 text-center descr-occupata align-middle align-self-center m-auto";
+        titoloHTML.className="col-12 titolo-libera";
     }
   
     background.className="row color-change-"+colore+" banner-height";
