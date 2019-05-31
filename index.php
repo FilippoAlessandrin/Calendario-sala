@@ -222,8 +222,8 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             </div>
             <div class="col-3">
                 <div class="row legenda">    
-                    <div><img src="/img/rounded-black-square-orange">Sala Riunioni</div>
-                    <div><img src="/img/rounded-black-square-blue">Saletta Riunioni</div>
+                    <div class="col-12" id="salaRiunioni">Sala Riunioni</div>
+                    <div class="col-12" id="salettaRiunioni">Saletta Riunioni</div>
                 </div>
             </div>
             
