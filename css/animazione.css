@@ -283,7 +283,16 @@ body {
     border-right: 0.5px solid white;
     padding-right: 15px;
     text-align: center;
-    background-color: #3a3a3b;
+    background-color: #ff8d3e;
+    border-radius: 5px;
+    margin-left: 15px;
+    color: white;
+}
+.bordino {
+    border-right: 0.5px solid white;
+    padding-right: 15px;
+    text-align: center;
+    background-color: #22ade4;
     border-radius: 5px;
     margin-left: 15px;
     color: white;
