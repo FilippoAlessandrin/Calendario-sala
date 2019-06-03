@@ -195,14 +195,7 @@ body {
     background-color: rgb(218, 218, 218);
 }
 
-#ora-oggi {
-    text-align: right;
-    border-right: 1px solid white;
-    background-color: #ff8d3e;
-    color: white;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
+
 
 .evento-oggi {
     margin-right: 15px !important;
@@ -211,18 +204,29 @@ body {
     -moz-border-radius: 10px;
     border-radius: 4px;
     background-color: white;
-    border: 1px solid #ff8d3e;
+    
     margin-top: 15px;
     letter-spacing: 0.3px;
+}
+.evento-oggi-grande{
+    border: 1px solid #ff8d3e;
+}
+.evento-oggi-piccola{
+    border: 1px solid #22ade4;
 }
 
 #ora-oggi {
     text-align: right;
     border-right: 1px solid white;
-    background-color: #22ade4;
     color: white;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+}
+.ora-oggi-grande{
+    background-color: #ff8d3e;
+}
+.ora-oggi-piccola{
+    background-color: #22ade4;
 }
 .evento-oggi-saletta {
     margin-right: 15px !important;
@@ -279,7 +283,7 @@ body {
     margin-top: 10px;
 }
 
-.bordino {
+.bordino-grande {
     border-right: 0.5px solid white;
     padding-right: 15px;
     text-align: center;
@@ -288,7 +292,7 @@ body {
     margin-left: 15px;
     color: white;
 }
-.bordino {
+.bordino-piccola {
     border-right: 0.5px solid white;
     padding-right: 15px;
     text-align: center;
@@ -340,9 +344,9 @@ body {
 
 .legenda {
     font-size: 18px;
-    text-align: right;
+    text-align: left;
     padding-top: 5%;
-    padding-right: 135px;
+    padding-left: 135px;
 }
 
 #salaRiunioni{
