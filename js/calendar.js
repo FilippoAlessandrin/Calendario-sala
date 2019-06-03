@@ -223,7 +223,19 @@ function parseEvents(response) {
             var nomeOrganizer = parseEmail(event.creator.email);
             var description=event.description;
             var titolo=event.summary;
-            evento["description"]=description;
+            if(description.split("\n")){
+                var descriptionSplitted=description.split("\n");
+                var descrizione=descriptionSplitted[0];
+                if(descriptionSplitted.length>1){
+                    var calendario=descriptionSplitted[1].toLowerCase();
+                }else{
+                    calendario="sala-grande";
+                }
+            }
+            
+            evento["description"]=descrizione;
+            evento["calendario"]=calendario;
+            
             if(nomeOrganizer.length>25){
                 evento["nomeOrganizer"]=nomeOrganizer.substring(0, 25) +"...";
             }else{
@@ -240,7 +252,7 @@ function parseEvents(response) {
                 var data = when.split("-");
                 data = data[2] + "/" + data[1] + "/" + data[0];
                 evento["data"] = data;
-                evento["description"]=description;
+                
                 
             } else {
 
