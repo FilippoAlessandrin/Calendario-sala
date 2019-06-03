@@ -221,9 +221,9 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
                     <div class="line-1 align-middle align-self-center m-auto" id="messaggio-benv">Benvenuti in Gruppo Sinergia</div>
             </div>
             <div class="col-3">
-                <div class="row meteo">    
-                    <div><img class="weather" id="img-meteo-2"></div>
-                    <div class="gradi" id="gradi-2"></div>
+                <div class="row legenda">    
+                    <div class="col-12" id="salaRiunioni">Sala Riunioni</div>
+                    <div class="col-12" id="salettaRiunioni">Saletta Riunioni</div>
                 </div>
             </div>
             
