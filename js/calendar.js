@@ -247,15 +247,20 @@ function parseEvents(response) {
             var description = event.description;
             var titolo = event.summary;
             var calendario = "sala-grande";
-            if (description) {
-                var descriptionSplitted = description.split("\n");
-                var descrizione = descriptionSplitted[0];
-               
-                if(descriptionSplitted[1]){
-                    if (descriptionSplitted[1].toLowerCase()==="sala piccola") {
+            var capoluogo=event.location;
+            if(capoluogo){
+          
+                    if (capoluogo.toLowerCase()==="sala piccola") {
                         calendario = "sala piccola";
                     }
                 }
+            
+            
+            if (description) {
+                var descriptionSplitted = description.split("\n");
+                var descrizione = descriptionSplitted[0];
+            
+             
                 evento["description"] = descrizione;
                 
 
@@ -315,8 +320,8 @@ function parseEvents(response) {
 
             }
             eventi.push(evento);
-
         }
+        
     } else {
 
     }

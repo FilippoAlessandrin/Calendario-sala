@@ -230,7 +230,7 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
             
         </div>
 
-    </div>
+
 
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -241,7 +241,6 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/javascript" src="js/weather.js"></script>
 <script type="text/javascript" src="js/calendar.js"></script>
     
-<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 
 </body>
 </html>
