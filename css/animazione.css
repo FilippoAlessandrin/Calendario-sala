@@ -216,6 +216,26 @@ body {
     letter-spacing: 0.3px;
 }
 
+#ora-oggi {
+    text-align: right;
+    border-right: 1px solid white;
+    background-color: #22ade4;
+    color: white;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.evento-oggi-saletta {
+    margin-right: 15px !important;
+    margin-left: 15px !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid #22ade4;
+    margin-top: 15px;
+    letter-spacing: 0.3px;
+}
+
 .titolo {
     background-color: #3a3a3b;
     height: 6vh;
@@ -263,7 +283,16 @@ body {
     border-right: 0.5px solid white;
     padding-right: 15px;
     text-align: center;
-    background-color: #3a3a3b;
+    background-color: #ff8d3e;
+    border-radius: 5px;
+    margin-left: 15px;
+    color: white;
+}
+.bordino {
+    border-right: 0.5px solid white;
+    padding-right: 15px;
+    text-align: center;
+    background-color: #22ade4;
     border-radius: 5px;
     margin-left: 15px;
     color: white;
@@ -307,8 +336,21 @@ body {
     margin-top: 1.5%;
     margin-left: 10px;
 }
+/* ______________________________________________________________________________________________ */
 
+.legenda {
+    font-size: 18px;
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 135px;
+}
 
+#salaRiunioni{
+    color:#ff9249;
+}
 
+#salettaRiunioni{
+    color:#22ade4; 
+}
 
 /* ______________________________________________________________________________________________ */
