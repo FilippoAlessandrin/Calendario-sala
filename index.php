@@ -212,19 +212,20 @@ initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <!-- BARRA INFO -->
         <div class="row barra-info">
             <div class="col-3">
-            <div class="row meteo">    
-                    <div><img class="weather " id="img-meteo"></div>
-                    <div class="gradi" id="gradi">17°</div>
+                <div class="row legenda">    
+                    <div class="col-12" id="salaRiunioni">Sala Riunioni</div>
+                    <div class="col-12" id="salettaRiunioni">Saletta Riunioni</div>
                 </div>
             </div>
             <div class="col-6 text-center flip-vertical-left">
                     <div class="line-1 align-middle align-self-center m-auto" id="messaggio-benv">Benvenuti in Gruppo Sinergia</div>
             </div>
             <div class="col-3">
-                <div class="row legenda">    
-                    <div class="col-12" id="salaRiunioni">Sala Riunioni</div>
-                    <div class="col-12" id="salettaRiunioni">Saletta Riunioni</div>
+                <div class="row meteo">    
+                    <div><img class="weather " id="img-meteo"></div>
+                    <div class="gradi" id="gradi">17°</div>
                 </div>
+            </div>
             </div>
             
         </div>

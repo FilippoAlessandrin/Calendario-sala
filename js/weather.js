@@ -38,13 +38,9 @@ function gestisciWeather(result) {
 function stampaWeather(tempo){
     var imgMeteo=document.getElementById("img-meteo");
     var tempDiv=document.getElementById("gradi");
-    var imgMeteo2=document.getElementById("img-meteo-2");
-    var tempDiv2=document.getElementById("gradi-2");
-    
     imgMeteo.src="img/"+tempo["icon"]+".svg";
     tempDiv.innerHTML=Math.round(tempo["temp"])+"°";
-    imgMeteo2.src="img/"+tempo["icon"]+".svg";
-    tempDiv2.innerHTML=Math.round(tempo["temp"])+"°";
+
 }
 
 
